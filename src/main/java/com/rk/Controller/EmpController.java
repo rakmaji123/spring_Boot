@@ -3,6 +3,8 @@ package com.rk.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,14 +13,26 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
 import com.rk.Entity.EmpEntity;
 import com.rk.Service.EmpService;
 
+@PropertySource(value="classpath:employee.properties")
 @RestController
 public class EmpController {
 	
 	@ Autowired
 	EmpService ss;
+	
+	@Value("${message}")
+	private String msd;
+	
+	@Value("${kohli}")
+	private String vk;
+	
+	@Value("${Rakmaji}")
+	private String Rk;
 	
 	@GetMapping("/empAdd")
 	public String addEmp(@RequestBody EmpEntity e) {
@@ -33,6 +47,7 @@ public class EmpController {
 	public EmpEntity getEmpByid(@PathVariable int id) {
 		
 		EmpEntity e=ss.getEmpByid(id);
+		System.out.println(msd);
 		return e;
 		
 	}
@@ -57,12 +72,14 @@ public class EmpController {
 	@GetMapping("/SelectAll")
 	public List<EmpEntity> AllEmpEntity(){
 		List<EmpEntity> list=ss. AllEmpEntity();
+		System.out.println(Rk);
 		return list;
 	}
 	//--------------------------------Get  By name--------------------------------------
 	@GetMapping("/getname/name/{name}")
 	public List<EmpEntity> GetEmpByName( @PathVariable String name){
 		List<EmpEntity> list = ss. getEmpByName(name);
+		System.out.println(vk);
 		return list;
 	}
 }

@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="employee")
@@ -16,6 +17,7 @@ public class EmpEntity {
 	@Column(name="id")
 	private int id;
 	
+	@Size(max =4)
 	@Column(name="name")
 	private String name;
 	
